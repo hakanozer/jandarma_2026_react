@@ -9,6 +9,10 @@ const config = axios.create({
 config.interceptors.request.use(
     config => {
         console.log("Request config çalıştı")
+        const token = localStorage.getItem('access_token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     error => {

@@ -1,0 +1,4 @@
+.nav-link.active, .nav-link:active {
+    background-color: #e76050;
+    color: #ffffff !important;
+}
