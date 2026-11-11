@@ -1,7 +1,19 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import {  NavLink } from 'react-router-dom'
+import { logOut } from '../services/userService'
 
-function Navbar() {
+function Navbar(props: { name: string }) {
+
+   const handleLogOut = () => {
+    const answer = window.confirm("Çıkış yapmak istediğinize emin misiniz?")
+    if (answer) {
+            logOut().then(() => {
+                localStorage.removeItem('access_token')
+                window.location.replace("/")
+            })
+       }
+   }
+
   return (
     <nav className="navbar md:navbar-expand bg-1">
     <div className="container-fluid">
@@ -24,17 +36,17 @@ function Navbar() {
             </li>
             <li className="nav-item">
                 <button className="nav-link" type="button" data-bs-toggle="menu" aria-expanded="false">
-                Menu
+                Profile <i className="bi bi-chevron-down"></i>
                 </button>
                 <div className="menu">
                 <a className="menu-item" href="#">Action</a>
                 <a className="menu-item" href="#">Another action</a>
                 <hr className="menu-divider"/>
-                <a className="menu-item" href="#">Something else here</a>
+                <a className="menu-item" onClick={handleLogOut} >Log Out</a>
                 </div>
             </li>
             <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.name}</a>
             </li>
             </ul>
             <form className="hstack gap-2" role="search">

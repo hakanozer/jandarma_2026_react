@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar'
 function protectedRoute() {
 
     const [isLogin, setIsLogin] = useState(false)
+    const [name, setName] = useState('')
 
     useEffect(() => {
         const token = localStorage.getItem('access_token')
@@ -16,7 +17,8 @@ function protectedRoute() {
         }else {
             setIsLogin(true)
             profileMe().then(response => {
-                console.log(response)
+                //console.log(response)
+                setName(response.data.data.name)
             }).catch(() => {
                 localStorage.removeItem('access_token')
                 window.location.replace("/")
@@ -28,7 +30,7 @@ function protectedRoute() {
   return (
     isLogin ? 
         <>  
-            <Navbar />
+            <Navbar name={name} />
             <Outlet />
         </>
     : null

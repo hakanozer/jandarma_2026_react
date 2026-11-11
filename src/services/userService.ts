@@ -10,4 +10,7 @@ export const profileMe = () => {
     return config.get("profile/me")
 }
 
+export const logOut = () => {
+    return config.post("auth/logout")
+}
 

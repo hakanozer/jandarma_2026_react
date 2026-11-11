@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Products from './components/Products'
 import Likes from './components/Likes'
 import ProtectedRoute from './services/ProtectedRoute'
+import ProductDetail from './components/ProductDetail'
 
 const router = 
     <BrowserRouter>
@@ -17,6 +18,7 @@ const router =
         <Route element={<ProtectedRoute />}>
           <Route path="/products" element={<Products />} />
           <Route path="/likes" element={<Likes />} />
+          <Route path="/productDetail/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
