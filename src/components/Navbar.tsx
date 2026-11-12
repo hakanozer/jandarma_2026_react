@@ -1,8 +1,10 @@
-import React from 'react'
-import {  NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import {  NavLink, useNavigate } from 'react-router-dom'
 import { logOut } from '../services/userService'
 
 function Navbar(props: { name: string }) {
+
+    const [q, setQ] = useState('')
 
    const handleLogOut = () => {
     const answer = window.confirm("Çıkış yapmak istediğinize emin misiniz?")
@@ -12,6 +14,12 @@ function Navbar(props: { name: string }) {
                 window.location.replace("/")
             })
        }
+   }
+
+   const navigate = useNavigate()
+   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
+     e.preventDefault()
+     navigate(`/search?q=${q}`)
    }
 
   return (
@@ -49,10 +57,10 @@ function Navbar(props: { name: string }) {
                 <a className="nav-link disabled" aria-disabled="true">{props.name}</a>
             </li>
             </ul>
-            <form className="hstack gap-2" role="search">
-            <input className="form-control" type="search" placeholder="Search" aria-label="Search"/>
+            <form onSubmit={handleSearch} className="hstack gap-2" role="search">
+            <input value={q} onChange={(e) => setQ(e.target.value)} className="form-control" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn-solid btn-icon theme-secondary" type="submit">
-                <svg className="bi" width="16" height="16"><use href="#search" /></svg>
+                <i className="bi bi-search"></i>
             </button>
             </form>
         </div>

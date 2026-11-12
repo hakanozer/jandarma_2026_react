@@ -8,7 +8,7 @@ function protectedRoute() {
 
     const [isLogin, setIsLogin] = useState(false)
     const [name, setName] = useState('')
-
+    
     useEffect(() => {
         const token = localStorage.getItem('access_token')
         const validToken = isTokenValid(token)

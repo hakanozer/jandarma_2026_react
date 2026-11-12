@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getProducts } from '../services/productService'
 import type { Product } from '../models/productsModel'
-import { Link } from 'react-router-dom'
+import ProductItem from './ProductItem'
 
 function Products() {
 
@@ -58,16 +58,9 @@ function Products() {
 
       <div className='row'>
         {products.map(item => (
-            <section key={item.id} className="xsm:col-12 sm:col-12 md:col-6 lg:col-4 card">
-              <img src={item.images[0]} className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h4 className="card-title">{item.title}</h4>
-                <p className="card-text">{item.price}₺</p>
-                <Link to={`/productDetail/${item.id}`} className="btn-solid theme-primary">Detay</Link>
-              </div>
-            </section>
+            <ProductItem key={item.id} item={item} />
         ))}
-       </div>
+      </div>
     </>
      
   )

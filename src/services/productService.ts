@@ -12,3 +12,10 @@ export const getProducts = (page: number, per_page: number) => {
 export const getProductDetail = (id: string) => {
     return config.get<ProductDetailModel>(`/products/${id}`)
 }
+
+export const searchProducts = (query: string) => {
+    const sendData = {
+        query
+    }
+    return config.get<ProductsModel>("/products/search", { params: sendData })
+}
