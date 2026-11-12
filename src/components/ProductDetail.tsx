@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProductDetail } from '../services/productService'
 import type { Product } from '../models/productsModel'
+import { likesArr, toggleLikeFnc } from '../utils/likesControl'
 
 function ProductDetail() {
 
@@ -42,6 +43,22 @@ function ProductDetail() {
     }
     return stars
   }
+
+
+  const [isLike, setIsLike] = useState(false)
+  const toggleLike = () => {
+    setIsLike(!isLike)
+    const pid = product!.id
+    toggleLikeFnc(pid)
+  }
+
+  useEffect(() => {
+    const arr = likesArr()
+    const index = arr.findIndex(item => item === Number(params.id))
+    if (index > -1) {
+        setIsLike(true)
+    }
+  }, [])
 
   return (
     <>
@@ -199,6 +216,7 @@ function ProductDetail() {
                             </div>
                         </div>
                     }
+                    <i role='button' onClick={toggleLike} className={`bi ${isLike ? 'bi-suit-heart-fill fg-danger' : 'bi-suit-heart'}`} style={{fontSize: '30px'}}></i>
                 </div>
 
                 {/* ============ SAĞ TARAF: RESİM GALERİSİ ============ */}
