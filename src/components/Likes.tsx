@@ -4,20 +4,21 @@ import { getProductDetail } from '../services/productService';
 import type { Product } from '../models/productsModel';
 import axios from 'axios';
 import ProductItem from './ProductItem';
+import useLikeStore, { type LikeStore } from '../store/useLikeStore';
 
 function Likes() {
 
+  const likesArr = useLikeStore((state:LikeStore) => state.likes)
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState<Product[]>([])
   useEffect(() => {
 
-    const arr = likesArr()
     setLoading(true)
-    axios.all(arr.map(id => getProductDetail(''+id))).then(responses => {
+    axios.all(likesArr.map(id => getProductDetail(''+id))).then(responses => {
         setProducts(responses.map(res => res.data.data))
     }).finally(() => setLoading(false))
 
-  }, [])
+  }, [likesArr])
 
 
   return (

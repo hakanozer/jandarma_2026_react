@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { likesArr } from '../utils/likesControl'
+import React, { useState } from 'react'
+import useLikeStore, { type LikeStore } from '../store/useLikeStore'
 import {  NavLink, useNavigate } from 'react-router-dom'
 import { logOut } from '../services/userService'
 
 function Navbar(props: { name: string }) {
 
     const [q, setQ] = useState('')
-    const [likesCount, setLikesCount] = useState(0)
+    const likesArr = useLikeStore((state:LikeStore) => state.likes)
 
    const handleLogOut = () => {
     const answer = window.confirm("Çıkış yapmak istediğinize emin misiniz?")
@@ -24,9 +24,6 @@ function Navbar(props: { name: string }) {
      navigate(`/search?q=${q}`)
    }
 
-   useEffect(() => {
-    setLikesCount(likesArr().length)
-   }, [])
    
 
   return (
@@ -61,7 +58,7 @@ function Navbar(props: { name: string }) {
                 </div>
             </li>
             <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">{props.name} ({likesCount})</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.name} ({likesArr.length})</a>
             </li>
             </ul>
             <form onSubmit={handleSearch} className="hstack gap-2" role="search">

@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom'
 import { getProductDetail } from '../services/productService'
 import type { Product } from '../models/productsModel'
 import { likesArr, toggleLikeFnc } from '../utils/likesControl'
+import useLikeStore, { type LikeStore } from '../store/useLikeStore'
 
 function ProductDetail() {
 
+ const changeLikes = useLikeStore((state:LikeStore) => state.changeLikes)
  const [product, setProduct] = useState<Product | null>(null)
  const [activeImage, setActiveImage] = useState<string>('')
 
@@ -50,6 +52,7 @@ function ProductDetail() {
     setIsLike(!isLike)
     const pid = product!.id
     toggleLikeFnc(pid)
+    changeLikes(likesArr())
   }
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const config = axios.create({
-    baseURL: "https://jsonbulut.com/api/",
-    timeout: 10000
+    baseURL: import.meta.env.VITE_BASE_URL,
+    timeout: import.meta.env.VITE_TIMEOUT
 })
 
 // interceptors for requests
