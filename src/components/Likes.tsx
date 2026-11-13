@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { likesArr } from '../utils/likesControl'
+import { useEffect, useState } from 'react'
 import { getProductDetail } from '../services/productService';
 import type { Product } from '../models/productsModel';
 import axios from 'axios';

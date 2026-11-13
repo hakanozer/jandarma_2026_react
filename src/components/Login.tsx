@@ -27,6 +27,8 @@ function Login() {
 
   return (
     <div className='row'>
+        <title>Login Page</title>
+        <meta name="description" content="User Login Page"></meta>
         <div className='sm:col-4 md:col-2 lg:col-4'></div>
         <div className='sm:col-4 md:col-8 lg:col-4'>
             <h2>Login</h2>

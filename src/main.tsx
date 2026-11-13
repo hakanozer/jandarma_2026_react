@@ -10,6 +10,7 @@ import Likes from './components/Likes'
 import ProtectedRoute from './services/ProtectedRoute'
 import ProductDetail from './components/ProductDetail'
 import Search from './components/Search'
+import NotFount from './components/NotFount'
 
 const router = 
     <BrowserRouter>
@@ -22,6 +23,7 @@ const router =
           <Route path="/productDetail/:id" element={<ProductDetail />} />
           <Route path="/search" element={<Search />} />
         </Route>
+        <Route path='*' element={<NotFount />} />
       </Routes>
     </BrowserRouter>
 

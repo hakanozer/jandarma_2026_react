@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { isTokenValid } from '../utils/jwtControl'
 import { profileMe } from './userService'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import { useProtection } from '../utils/useProtection'
 
 function protectedRoute() {
+
+    useProtection();
 
     const [isLogin, setIsLogin] = useState(false)
     const [name, setName] = useState('')
@@ -25,6 +28,17 @@ function protectedRoute() {
             })
         }
     }, [])
+
+    useEffect(() => {
+        const preventContextMenu = (e: any) => e.preventDefault();
+        document.addEventListener("contextmenu", preventContextMenu);
+        return () => {
+            document.removeEventListener(
+            "contextmenu",
+            preventContextMenu
+            );
+        };
+    }, []);
 
 
   return (

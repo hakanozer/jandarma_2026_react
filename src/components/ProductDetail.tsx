@@ -113,7 +113,7 @@ function ProductDetail() {
               .pd-thumb.active { border-color: #0f766e; opacity: 1; }
               .pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
             `}</style>
-
+            <title>{product.title}</title>
             <h2 className="mb-3">{product.title}</h2>
 
             <div className="row g-4">
@@ -259,3 +259,4 @@ function ProductDetail() {
 }
 
 export default ProductDetail
+

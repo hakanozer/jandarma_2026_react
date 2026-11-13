@@ -37,9 +37,7 @@ function Products() {
   return (
     <>
       <h2>Products</h2>
-
-
-
+      <title>Product Page</title>
       <nav aria-label="Page navigation example">
       <ul className="pagination justify-content-end">
         {pages.map(page => (
